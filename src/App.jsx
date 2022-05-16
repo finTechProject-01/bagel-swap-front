@@ -1,45 +1,50 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.scss'
+import { useState } from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+
+import logo from "./logo.svg";
+import "./App.scss";
+
+import { hasAuthenticated } from "./services/AuthApi";
+import Auth from "./contexts/Auth";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import ErrorPage from './pages/ErrorPage'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    hasAuthenticated().tokenValid
+  );
+  const [roles, setRoles] = useState(hasAuthenticated().roles);
+  const [email, setEmail] = useState(hasAuthenticated().email);
+  const [showLogin, setShowLogin] = useState();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <Auth.Provider
+      value={{
+        isAuthenticated,setIsAuthenticated,
+        roles,setRoles,
+        email,setEmail,
+        showLogin,setShowLogin,
+      }}
+    >
+      <Router>
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+      <ToastContainer />
+    </Auth.Provider>
+  );
 }
 
-export default App
+export default App;

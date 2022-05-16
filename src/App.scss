@@ -1,45 +1,81 @@
 @import "styles/main";
 
 
-.App {
+footer {
+  margin-bottom: 30px;
+  padding: 25px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+form {
+  position: relative;
+  margin: 30px auto;
+  max-width:950px;
+  text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+form div {
+  margin: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input, select, textarea {
+  width: 100%;
+  font-size: 18px;
+  padding: 8px 16px;
+  margin:5px auto;
+  line-height : 22px;
+  letter-spacing: 1.5px;
+  color: rgb(59, 59, 59);
+  background-color:#cecece85 ;
+  border-radius: 8px 0 8px 0;
+}
+
+.link-primary {
+  cursor: pointer;
+}
+
+
+.copyright{
+  font-family: "Helvetica Neue";
+  font-weight : 400;
+  text-decoration: none;
+  color :darkgray;
+}
+
+.copyright.link:hover {
+  font-weight: 600;
+  color :darkgray;
+}
+
+.social-icons {
+  height: 40px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo-social {
+  border-radius: 10%;
+  margin : 0px 20px 0 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo-social:hover{
+  background: #c2c2c28c ;
 }
 
-button {
-  font-size: calc(10px + 2vmin);
+.form-button {
+  position : absolute;
+  bottom : -100px;
+  right : 80px;
 }
+
+
+.icon {
+  width :15px;
+  height: 15px;
+  position : relative;
+  top : -5px;
+}
+
+
