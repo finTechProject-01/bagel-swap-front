@@ -37,13 +37,14 @@ const LoginForm = ( {toogleNewCustomer,  captchaVerified } ) => {
                 email, 
                 password,
             }
+            console.log(credentials)
             setShowSpinner(true)
             try {
                 const response = await login(credentials);
-                setIsAuthenticated(hasAuthenticated().tokenValid);
-                setRoles (hasAuthenticated().roles);
-                setEmail ( hasAuthenticated().email);
-                document.forms['contact'].reset();
+                //setIsAuthenticated(hasAuthenticated().tokenValid);
+                //setRoles (hasAuthenticated().roles);
+                //setEmail ( hasAuthenticated().email);
+                //document.forms['contact'].reset();
                 apiSuccess.innerHTML="Vous etes connecté !";
                 apiError.innerHTML="";
                 setShowSpinner(false);
@@ -51,6 +52,7 @@ const LoginForm = ( {toogleNewCustomer,  captchaVerified } ) => {
             } catch ({response}) {
                 setIsAuthenticated(false);
                 logout()
+                console.log(response)
                 apiSuccess.innerHTML=""
                 apiError.innerHTML=  response.data.message
                 setShowSpinner(false)

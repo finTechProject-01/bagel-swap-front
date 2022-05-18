@@ -17,12 +17,13 @@ export function hasAuthenticated() {
  export function login(credentials) {
      return axios
         .post(`${API_URL}login`,credentials)
-        .then(response =>response.data.token) 
-        .then(token => {
-            addItem('nut-token',token)
+        .then(response =>response.data) 
+        .then(data => {
+            console.log('nut-token : ',data)
             return true;
         })
 }
+
 
 export function register(credentials) {
     return axios
